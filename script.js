@@ -24,7 +24,16 @@ function addBookToLibrary(isRead){
     Library.push(new Book(title.value, author.value, page_number.value, isRead))
     displayLibrary();
 }
+function removeBook(index){
+    Library.splice(index,1);
 
+    if(index < 2){
+        bookshelf.deleteRow(1)
+    }
+    else{
+        bookshelf.deleteRow(index)
+    }
+}
 function displayLibrary(){
     for(let i = 0; i < Library.length; i++){
 
@@ -41,11 +50,18 @@ function displayLibrary(){
         row.setAttribute('dataIndex', i);
 
         // create a delete button 
-        let delete_book_button = document.createElement("button");
-        delete_book_button.innerHTML = "Delete Book"
-        delete_book_button.addEventListener("click",(event) =>{
         
-        })
+        let btnRemoveBook = document.createElement("input");
+        btnRemoveBook.setAttribute("dataIndex", i);
+        btnRemoveBook.addEventListener("click", (e) => {
+        //removeBook(e.path[2].attributes.dataIndex.value);
+        removeBook(e.target.attributes.dataIndex.value)
+        });
+
+        btnRemoveBook.type = "button";
+        btnRemoveBook.value = "Remove";
+
+    
         isReadCell.addEventListener("click",function(){
             Book.changeReadStatus();
         })
@@ -56,13 +72,10 @@ function displayLibrary(){
         isReadCell.innerHTML = Library[i].isRead;
        
         //isReadCell.appendChild(btnChangeRead);
-        deleteBook.appendChild(delete_book_button);
+        deleteBook.appendChild(btnRemoveBook);
     }
 }
 
-function deleteBook(){
-    
-}
 
 let btnAddBook = document.querySelector("#addBook").addEventListener("click", (event) => {
     event.preventDefault();
