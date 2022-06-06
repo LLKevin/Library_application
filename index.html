@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./script.js"></script>
     <title>Document</title>
 </head>
 <body>
 <!--Display Books-->
-    <table>
+    <table class="bookshelf">
         <tr>
             <th>Title</th>
             <th>Author</th>
             <th>Number Of Pages</th>
             <th>Has been read?</th>
+            <th>Delete Book?</th>
         </tr>
     </table>
-    <form action="" method="post">
+    <form class="add-book-form">
         <label for="book-title">Title</label>
         <input type="text" class="book-title">
 
@@ -25,12 +25,13 @@
         <input type="text" name="book-author" class="book-author">
 
         <label for="book-page-count">Number Of Pages</label>
-        <input type="text" name="book-page-count">
+        <input type="text" name="book-page-count" class="book-page-count">
 
         <label for="isRead">Has been Read?</label>
         <input type="checkbox" name="isRead" class="isRead">
-        
-        <button type="submit" class="addBook">Add Book</button>
-    </form>
+
+        <input type="submit" class="btn_addBook" value="Add Book" id="addBook"/>  
+      </form>
+      <script src="./script.js"></script>
 </body>
 </html>
