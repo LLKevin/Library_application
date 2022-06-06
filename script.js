@@ -25,15 +25,20 @@ function addBookToLibrary(isRead){
     displayLibrary();
 }
 function removeBook(index){
-    Library.splice(index,1);
+
+    index = 1 ? Library.splice(0, 1) : Library.splice(index, 1);
 
     if(index < 2){
-        bookshelf.deleteRow(1)
+        if(index != 0)
+            bookshelf.deleteRow(index)
+        else{
+            bookshelf.deleteRow(index + 1)
+        }
     }
     else{
-        bookshelf.deleteRow(index)
+        bookshelf.deleteRow(-1)
     }
-}
+} 
 function displayLibrary(){
     for(let i = 0; i < Library.length; i++){
 
