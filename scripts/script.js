@@ -16,8 +16,13 @@ const Book = class{
     }
 }
 //flip the read status value
-Book.prototype.changeReadStatus = function(){
-    this.isRead = !this.isRead;
+function changeReadStatus(index){
+    Library[index].isRead = !Library[index].isRead; 
+    let isReadString = "";
+
+    Library[index].isRead  == false ? isReadString = "has not been read" : isReadString = "has been read"; 
+    bookshelf.rows[parseInt(index) + 1].cells[3].innerHTML = isReadString ;
+    
 }
 
 function addBookToLibrary(isRead){
@@ -67,8 +72,9 @@ function displayLibrary(){
         btnRemoveBook.value = "Remove";
 
     
-        isReadCell.addEventListener("click",function(){
-            Book.changeReadStatus();
+        isReadCell.addEventListener("click", (e) =>{
+            //console.log(e.target.parentElement.attributes.dataIndex.value)
+            changeReadStatus(e.target.parentElement.attributes.dataIndex.value);
         })
 
         authorCell.innerHTML = Library[i].author;
